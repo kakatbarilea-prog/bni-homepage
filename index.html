@@ -1,0 +1,1658 @@
+<header class="rs-header" role="banner">
+  <div class="rs-header__inner">
+
+    <!-- Brand / Logo -->
+    <a class="rs-brand" href="#" aria-label="BNI Rock Solid Referrals - Home">
+      <img
+        class="rs-brand__logo"
+        src="https://d34hmiuaex7c0.cloudfront.net/6568/uploads/cmaspages/gallery/galleryitem_1759854726598.png"
+        alt="BNI Rock Solid Referrals"
+      />
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="rs-nav" aria-label="Primary navigation">
+      <a class="rs-nav__link is-active" href="#">Home</a>
+
+      <!-- Dropdown (CSS-only) -->
+      <div class="rs-nav__dropdown">
+        <a class="rs-nav__link rs-nav__dropbtn" href="#" aria-haspopup="true" aria-expanded="false">
+          Chapter Members
+        </a>
+
+        <div class="rs-nav__menu" role="menu" aria-label="Chapter Members">
+          <a role="menuitem" href="#">Directory</a>
+          <a role="menuitem" href="#">Seeks of the Week</a>
+        </div>
+      </div>
+
+      <a class="rs-nav__link" href="#">Meetings &amp; Events</a>
+      <a class="rs-nav__link" href="#">Gallery</a>
+    </nav>
+
+    <!-- Right -->
+    <div class="rs-actions">
+      <a class="rs-btn rs-btn--primary rs-desktopOnly" href="#">Member Log-in</a>
+
+      <!-- Mobile menu button (JS toggles panel) -->
+      <button class="rs-iconbtn" id="rsMenuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 6h16a1 1 0 1 0 0-2H4a1 1 0 1 0 0 2Zm16 7H4a1 1 0 0 0 0 2h16a1 1 0 1 0 0-2Zm0 7H4a1 1 0 0 0 0 2h16a1 1 0 1 0 0-2Z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Panel -->
+  <div class="rs-mobile" id="rsMobilePanel" hidden>
+    <div class="rs-mobile__inner">
+      <a href="#" class="rs-mobile__link">Home</a>
+      <a href="#" class="rs-mobile__link">Chapter Members — Directory</a>
+      <a href="#" class="rs-mobile__link">Chapter Members — Seeks of the Week</a>
+      <a href="#" class="rs-mobile__link">Meetings &amp; Events</a>
+      <a href="#" class="rs-mobile__link">Gallery</a>
+
+      <div class="rs-mobile__cta">
+        <a class="rs-btn rs-btn--primary rs-btn--block" href="#">Member Log-in</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* -------- HEADER ONLY VARIABLES (scoped) -------- */
+  .rs-header{
+    --rs-red:#CF2030;
+    --rs-ink:#111827;
+    --rs-line:#E5E7EB;
+    --rs-bg: rgba(255,255,255,.92);
+    --rs-shadow: 0 10px 26px rgba(0,0,0,.10);
+    --rs-h: 78px;
+  }
+
+  /* Scope all typography + box sizing to header only */
+  .rs-header, .rs-header *{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing:border-box;
+  }
+
+  .rs-header{
+    position:sticky; top:0; z-index:999;
+    width:100%;
+    background: var(--rs-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(229,231,235,.95);
+  }
+
+  .rs-header__inner{
+    width:100%;
+    height:var(--rs-h);
+    padding:0 26px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+  }
+
+  .rs-brand{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    flex:0 0 auto;
+  }
+
+  /* Prevent stretch */
+  .rs-brand__logo{
+    height:40px;
+    width:auto;
+    max-width:220px;
+    object-fit:contain;
+    display:block;
+  }
+
+  .rs-nav{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    flex:1;
+    min-width:0;
+  }
+
+  .rs-nav__link{
+    display:inline-flex;
+    align-items:center;
+    padding:10px 12px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:14px;
+    color:var(--rs-ink);
+    text-decoration:none;
+    white-space:nowrap;
+    transition:.15s ease;
+  }
+  .rs-nav__link:hover{background:#F6F7FB}
+
+  .rs-nav__link.is-active{position:relative}
+  .rs-nav__link.is-active::after{
+    content:"";
+    position:absolute;
+    left:12px; right:12px; bottom:6px;
+    height:2px;
+    border-radius:999px;
+    background:var(--rs-red);
+  }
+
+  /* Dropdown (CSS-only) with hover bridge */
+  .rs-nav__dropdown{position:relative}
+  .rs-nav__dropbtn{cursor:default}
+
+  .rs-nav__menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    margin-top:8px;
+    min-width:210px;
+    background:#fff;
+    border:1px solid var(--rs-line);
+    border-radius:14px;
+    box-shadow:var(--rs-shadow);
+    padding:8px;
+    display:none;
+    z-index:50;
+  }
+
+  .rs-nav__dropdown::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:100%;
+    width:240px;
+    height:18px;
+    background:transparent;
+    display:none;
+    z-index:40;
+  }
+
+  .rs-nav__menu a{
+    display:block;
+    padding:11px 12px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:14px;
+    color:var(--rs-ink);
+    text-decoration:none;
+    transition:.15s ease;
+  }
+  .rs-nav__menu a:hover{background:#F6F7FB}
+
+  .rs-nav__dropdown:hover .rs-nav__menu,
+  .rs-nav__dropdown:focus-within .rs-nav__menu{
+    display:block;
+  }
+  .rs-nav__dropdown:hover::before,
+  .rs-nav__dropdown:focus-within::before{
+    display:block;
+  }
+
+  .rs-actions{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:10px;
+    flex:0 0 auto;
+  }
+
+  /* Button with hover animation */
+  .rs-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:11px 16px;
+    border-radius:12px;
+    border:1px solid var(--rs-line);
+    background:#fff;
+    font-weight:600;
+    font-size:14px;
+    color:var(--rs-ink);
+    text-decoration:none;
+    white-space:nowrap;
+    position:relative;
+    overflow:hidden;
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  }
+
+  .rs-btn--primary{
+    border-color:transparent;
+    background:var(--rs-red);
+    color:#fff;
+  }
+
+  /* subtle sheen animation */
+  .rs-btn--primary::after{
+    content:"";
+    position:absolute;
+    top:-30%;
+    left:-60%;
+    width:40%;
+    height:160%;
+    transform: rotate(20deg);
+    background: rgba(255,255,255,.25);
+    opacity:0;
+    transition: opacity .2s ease;
+  }
+
+  .rs-btn--primary:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(0,0,0,.14);
+    filter: brightness(.98);
+  }
+  .rs-btn--primary:hover::after{
+    opacity:1;
+    animation: rsSheen .9s ease forwards;
+  }
+
+  @keyframes rsSheen{
+    0%{left:-60%}
+    100%{left:120%}
+  }
+
+  .rs-desktopOnly{display:inline-flex}
+
+  /* Mobile hamburger */
+  .rs-iconbtn{
+    width:44px;height:44px;
+    border-radius:12px;
+    border:1px solid var(--rs-line);
+    background:#fff;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .rs-iconbtn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(0,0,0,.10);
+  }
+  .rs-iconbtn svg{width:20px;height:20px; fill:#111827; display:block}
+
+  /* Mobile panel */
+  .rs-mobile{
+    border-top:1px solid var(--rs-line);
+    background:#fff;
+  }
+  .rs-mobile__inner{
+    padding:14px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .rs-mobile__link{
+    padding:12px 12px;
+    border-radius:12px;
+    font-weight:600;
+    background:#F7F7FA;
+    border:1px solid #EEF0F6;
+    text-decoration:none;
+    color:var(--rs-ink);
+    transition:.15s ease;
+  }
+  .rs-mobile__link:hover{background:#F1F3F8}
+  .rs-mobile__cta{padding-top:6px}
+  .rs-btn--block{width:100%}
+
+  @media (max-width: 980px){
+    .rs-nav{display:none}
+    .rs-iconbtn{display:inline-flex}
+    .rs-desktopOnly{display:none}
+    .rs-header__inner{padding:0 16px}
+    .rs-brand__logo{height:36px; max-width:180px;}
+  }
+
+  @media (max-width: 420px){
+    .rs-header{--rs-h:72px}
+    .rs-brand__logo{max-width:150px;}
+  }
+</style>
+
+<script>
+  /* Minimal / necessary only: mobile hamburger open/close */
+  (function(){
+    const btn = document.getElementById('rsMenuBtn');
+    const panel = document.getElementById('rsMobilePanel');
+    if(!btn || !panel) return;
+
+    function close(){
+      panel.setAttribute('hidden','');
+      btn.setAttribute('aria-expanded','false');
+    }
+
+    btn.addEventListener('click', () => {
+      const isHidden = panel.hasAttribute('hidden');
+      if(isHidden){
+        panel.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded','true');
+      }else{
+        close();
+      }
+    });
+
+    // Optional nice behavior: close after tapping a link
+    panel.addEventListener('click', (e) => {
+      if(e.target && e.target.tagName === 'A') close();
+    });
+
+    // Close if resizing back to desktop
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 980) close();
+    });
+  })();
+</script>
+
+
+
+
+<!--asdf-->
+
+<!-- =========================================================
+BNI ROCK SOLID — HOMEPAGE SECTIONS (NO HEADER/FOOTER INCLUDED)
+- Mobile-first, clean, professional
+- No unnecessary scripts
+- Image placeholders included with pixel sizes + art direction notes
+========================================================= -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<main class="rs-home">
+
+  <!-- =========================
+       1) HERO
+  ========================= -->
+  <section class="rs-hero" aria-label="Hero">
+    <div class="rs-container rs-hero__grid">
+
+      <div class="rs-hero__copy">
+        <div class="rs-badgeRow" aria-label="Highlights">
+          <span class="rs-badge">Weekly Meetings</span>
+          <span class="rs-badge">Trusted Local Pros</span>
+          <span class="rs-badge">Referral Driven</span>
+        </div>
+
+        <h1 class="rs-hero__title">Central NJ professionals who grow by referral.</h1>
+        <p class="rs-hero__sub">
+          BNI Rock Solid Referrals is a chapter of proven local business owners who build relationships,
+          share referrals, and help one another win business — week after week.
+        </p>
+
+        <div class="rs-hero__actions">
+          <a class="rs-btn rs-btn--primary" href="#">Meet the Chapter Members</a>
+          <a class="rs-btn rs-btn--ghost" href="#">View Meetings &amp; Events</a>
+        </div>
+
+        <div class="rs-hero__note">
+          Looking for a specific service? Browse members by category and view their digital cards.
+        </div>
+      </div>
+
+      <div class="rs-hero__visual" aria-label="Hero visual placeholder">
+        <div class="rs-imgPh rs-imgPh--hero">
+          <div class="rs-imgPh__label">
+            <strong>IMAGE PLACEHOLDER</strong><br>
+            Size: <strong>640px × 520px</strong><br>
+            Visual: Friendly modern illustration of professionals networking / shaking hands / exchanging referrals.
+            Style: Flat vector, subtle, not loud. Accent: Rock Solid red (#CF2030).
+          </div>
+        </div>
+
+        <!-- Optional floating mini cards -->
+        <div class="rs-floatCard rs-floatCard--one">
+          <div class="rs-floatCard__icon">✓</div>
+          <div class="rs-floatCard__text">
+            <div class="rs-floatCard__title">Trusted Referrals</div>
+            <div class="rs-floatCard__sub">Local pros, verified weekly</div>
+          </div>
+        </div>
+
+        <div class="rs-floatCard rs-floatCard--two">
+          <div class="rs-floatCard__icon">★</div>
+          <div class="rs-floatCard__text">
+            <div class="rs-floatCard__title">Active Chapter</div>
+            <div class="rs-floatCard__sub">Seeks • Presenters • Wins</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       2) TRUST STRIP / STATS
+  ========================= -->
+  <section class="rs-trustStrip" aria-label="Chapter stats">
+    <div class="rs-container rs-trustStrip__grid">
+      <div class="rs-stat">
+        <div class="rs-stat__num">30+</div>
+        <div class="rs-stat__label">Active Members</div>
+      </div>
+      <div class="rs-stat">
+        <div class="rs-stat__num">25+</div>
+        <div class="rs-stat__label">Industries Represented</div>
+      </div>
+      <div class="rs-stat">
+        <div class="rs-stat__num">Weekly</div>
+        <div class="rs-stat__label">Meeting Rhythm</div>
+      </div>
+      <div class="rs-stat">
+        <div class="rs-stat__num">Real</div>
+        <div class="rs-stat__label">Referrals &amp; Relationships</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       3) MEMBER SEARCH + PREVIEW CARDS
+  ========================= -->
+  <section class="rs-membersPreview" aria-label="Member directory preview">
+    <div class="rs-container">
+
+      <div class="rs-sectionHead">
+        <div>
+          <h2>Find the right professional — fast.</h2>
+          <p>Search members by name, service, or category. Tap a profile to view their digital card.</p>
+        </div>
+        <a class="rs-linkBtn" href="#">View Full Member Directory →</a>
+      </div>
+
+      <div class="rs-searchBar" role="search">
+       <i class="rs-searchIcon fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
+        <input type="text" placeholder="Search: plumber, attorney, insurance, HVAC, painter..." aria-label="Search members">
+        <button class="rs-btn rs-btn--soft" type="button">Search</button>
+      </div>
+
+      <div class="rs-memberGrid">
+        <!-- Card 1 -->
+        <article class="rs-memberCard">
+          <div class="rs-avatarPh">
+            <div class="rs-avatarPh__label">
+              IMAGE 84×84<br>
+              Member headshot or business logo
+            </div>
+          </div>
+          <div class="rs-memberCard__meta">
+            <div class="rs-memberCard__name">Member Name</div>
+            <div class="rs-memberCard__biz">Business Name</div>
+            <div class="rs-tags">
+              <span class="rs-tag">Category</span>
+              <span class="rs-tag rs-tag--muted">Town / Area</span>
+            </div>
+            <a class="rs-btn rs-btn--tiny rs-btn--ghost" href="#">View Digital Card</a>
+          </div>
+        </article>
+
+        <!-- Duplicate (placeholders) -->
+        <article class="rs-memberCard">
+          <div class="rs-avatarPh"><div class="rs-avatarPh__label">IMAGE 84×84<br>Headshot/Logo</div></div>
+          <div class="rs-memberCard__meta">
+            <div class="rs-memberCard__name">Member Name</div>
+            <div class="rs-memberCard__biz">Business Name</div>
+            <div class="rs-tags">
+              <span class="rs-tag">Category</span><span class="rs-tag rs-tag--muted">Town / Area</span>
+            </div>
+            <a class="rs-btn rs-btn--tiny rs-btn--ghost" href="#">View Digital Card</a>
+          </div>
+        </article>
+
+        <article class="rs-memberCard">
+          <div class="rs-avatarPh"><div class="rs-avatarPh__label">IMAGE 84×84<br>Headshot/Logo</div></div>
+          <div class="rs-memberCard__meta">
+            <div class="rs-memberCard__name">Member Name</div>
+            <div class="rs-memberCard__biz">Business Name</div>
+            <div class="rs-tags">
+              <span class="rs-tag">Category</span><span class="rs-tag rs-tag--muted">Town / Area</span>
+            </div>
+            <a class="rs-btn rs-btn--tiny rs-btn--ghost" href="#">View Digital Card</a>
+          </div>
+        </article>
+
+        <article class="rs-memberCard">
+          <div class="rs-avatarPh"><div class="rs-avatarPh__label">IMAGE 84×84<br>Headshot/Logo</div></div>
+          <div class="rs-memberCard__meta">
+            <div class="rs-memberCard__name">Member Name</div>
+            <div class="rs-memberCard__biz">Business Name</div>
+            <div class="rs-tags">
+              <span class="rs-tag">Category</span><span class="rs-tag rs-tag--muted">Town / Area</span>
+            </div>
+            <a class="rs-btn rs-btn--tiny rs-btn--ghost" href="#">View Digital Card</a>
+          </div>
+        </article>
+
+        <article class="rs-memberCard">
+          <div class="rs-avatarPh"><div class="rs-avatarPh__label">IMAGE 84×84<br>Headshot/Logo</div></div>
+          <div class="rs-memberCard__meta">
+            <div class="rs-memberCard__name">Member Name</div>
+            <div class="rs-memberCard__biz">Business Name</div>
+            <div class="rs-tags">
+              <span class="rs-tag">Category</span><span class="rs-tag rs-tag--muted">Town / Area</span>
+            </div>
+            <a class="rs-btn rs-btn--tiny rs-btn--ghost" href="#">View Digital Card</a>
+          </div>
+        </article>
+
+        <article class="rs-memberCard">
+          <div class="rs-avatarPh"><div class="rs-avatarPh__label">IMAGE 84×84<br>Headshot/Logo</div></div>
+          <div class="rs-memberCard__meta">
+            <div class="rs-memberCard__name">Member Name</div>
+            <div class="rs-memberCard__biz">Business Name</div>
+            <div class="rs-tags">
+              <span class="rs-tag">Category</span><span class="rs-tag rs-tag--muted">Town / Area</span>
+            </div>
+            <a class="rs-btn rs-btn--tiny rs-btn--ghost" href="#">View Digital Card</a>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       4) HOW IT WORKS (3 STEPS)
+  ========================= -->
+  <section class="rs-howItWorks" aria-label="How referrals work">
+    <div class="rs-container rs-howItWorks__grid">
+
+      <div class="rs-howItWorks__visual">
+        <div class="rs-imgPh rs-imgPh--how">
+          <div class="rs-imgPh__label">
+            <strong>IMAGE PLACEHOLDER</strong><br>
+            Size: <strong>560px × 440px</strong><br>
+            Visual: Simple illustration showing a meeting table + referral handoff + handshake.
+            Style: Vector, clean lines, soft shapes. Not too loud.
+          </div>
+        </div>
+      </div>
+
+      <div class="rs-howItWorks__copy">
+        <h2>How referrals work here</h2>
+        <p>
+          We don’t “spray” referrals. We build real familiarity, then recommend each other with confidence.
+        </p>
+
+        <div class="rs-steps">
+          <div class="rs-step">
+            <div class="rs-step__num">1</div>
+            <div class="rs-step__body">
+              <div class="rs-step__title">Meet Weekly</div>
+              <div class="rs-step__text">We stay active and visible — the trust is built through repetition.</div>
+            </div>
+          </div>
+          <div class="rs-step">
+            <div class="rs-step__num">2</div>
+            <div class="rs-step__body">
+              <div class="rs-step__title">Learn Each Other’s Businesses</div>
+              <div class="rs-step__text">We understand what “a good referral” truly looks like.</div>
+            </div>
+          </div>
+          <div class="rs-step">
+            <div class="rs-step__num">3</div>
+            <div class="rs-step__body">
+              <div class="rs-step__title">Pass Referrals With Confidence</div>
+              <div class="rs-step__text">Referrals go to real people — not random listings.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rs-howItWorks__cta">
+          <a class="rs-btn rs-btn--primary" href="#">Browse Member Categories</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       5) THIS WEEK'S SPOTLIGHTS (Seeks/Presenter/Wins)
+  ========================= -->
+  <section class="rs-spotlights" aria-label="This week's spotlights">
+    <div class="rs-container">
+
+      <div class="rs-sectionHead">
+        <div>
+          <h2>This week’s chapter highlights</h2>
+          <p>Seeks, featured presenter, and recent wins — the heartbeat of the chapter.</p>
+        </div>
+        <a class="rs-linkBtn" href="#">View Seeks of the Week →</a>
+      </div>
+
+      <div class="rs-spotGrid">
+
+        <article class="rs-spotCard rs-spotCard--seek">
+          <div class="rs-spotCard__top">
+            <div class="rs-spotCard__badge">Seek of the Week</div>
+          </div>
+          <div class="rs-spotCard__title">Looking for: <strong>Real Estate Agents</strong></div>
+          <div class="rs-spotCard__text">
+            Ideal referral: homeowners preparing to sell within 60 days in Middlesex / Monmouth.
+          </div>
+          <div class="rs-spotCard__meta">Submitted by: Member Name</div>
+          <a class="rs-btn rs-btn--tiny rs-btn--ghost" href="#">View Seek Details</a>
+        </article>
+
+        <article class="rs-spotCard rs-spotCard--present">
+          <div class="rs-spotCard__top">
+            <div class="rs-spotCard__badge">Featured Presenter</div>
+          </div>
+          <div class="rs-spotCard__title">This week: <strong>Member Name</strong></div>
+          <div class="rs-spotCard__text">
+            Topic: “How to spot a good referral (and what not to send).”
+          </div>
+          <div class="rs-spotCard__meta">Business: Business Name</div>
+          <a class="rs-btn rs-btn--tiny rs-btn--ghost" href="#">Learn More</a>
+        </article>
+
+        <article class="rs-spotCard rs-spotCard--wins">
+          <div class="rs-spotCard__top">
+            <div class="rs-spotCard__badge">Recent Wins</div>
+          </div>
+          <div class="rs-spotCard__text">
+            <ul class="rs-winList">
+              <li>Referral sent: HVAC → Homeowner repair</li>
+              <li>Closed deal: Insurance policy upgrade</li>
+              <li>New connection: Contractor partnership</li>
+            </ul>
+          </div>
+          <div class="rs-spotCard__meta">Updated weekly after the meeting</div>
+          <a class="rs-btn rs-btn--tiny rs-btn--ghost" href="#">View Chapter Updates</a>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       6) GALLERY PREVIEW
+  ========================= -->
+  <section class="rs-galleryPreview" aria-label="Gallery preview">
+    <div class="rs-container">
+
+      <div class="rs-sectionHead">
+        <div>
+          <h2>Moments from our meetings</h2>
+          <p>A quick look at the people and energy behind Rock Solid Referrals.</p>
+        </div>
+        <a class="rs-linkBtn" href="#">View Full Gallery →</a>
+      </div>
+
+      <div class="rs-galleryGrid">
+        <!-- 8 placeholder tiles -->
+        <div class="rs-galleryTile">
+          <div class="rs-galleryPh">IMAGE 260×180<br>Meeting photo</div>
+        </div>
+        <div class="rs-galleryTile"><div class="rs-galleryPh">IMAGE 260×180<br>Group photo</div></div>
+        <div class="rs-galleryTile"><div class="rs-galleryPh">IMAGE 260×180<br>Presenter shot</div></div>
+        <div class="rs-galleryTile"><div class="rs-galleryPh">IMAGE 260×180<br>Networking</div></div>
+        <div class="rs-galleryTile"><div class="rs-galleryPh">IMAGE 260×180<br>Referral moment</div></div>
+        <div class="rs-galleryTile"><div class="rs-galleryPh">IMAGE 260×180<br>Handshake</div></div>
+        <div class="rs-galleryTile"><div class="rs-galleryPh">IMAGE 260×180<br>Venue</div></div>
+        <div class="rs-galleryTile"><div class="rs-galleryPh">IMAGE 260×180<br>Celebration</div></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       7) MEETINGS & EVENTS PREVIEW
+  ========================= -->
+  <section class="rs-eventsPreview" aria-label="Meetings and events">
+    <div class="rs-container rs-eventsPreview__grid">
+
+      <div class="rs-eventsPreview__card">
+        <h2>Meetings &amp; events</h2>
+        <p>
+          Guests are welcome. Join us for a meeting and see how Rock Solid builds real business relationships.
+        </p>
+
+        <div class="rs-eventMeta">
+          <div class="rs-eventRow">
+            <span class="rs-eventLabel">Meeting Time</span>
+            <span class="rs-eventValue">Wednesdays • 7:00 AM</span>
+          </div>
+          <div class="rs-eventRow">
+            <span class="rs-eventLabel">Location</span>
+            <span class="rs-eventValue">[Insert Venue Name], NJ</span>
+          </div>
+          <div class="rs-eventRow">
+            <span class="rs-eventLabel">Guests</span>
+            <span class="rs-eventValue">RSVP encouraged</span>
+          </div>
+        </div>
+
+        <div class="rs-eventsPreview__actions">
+          <a class="rs-btn rs-btn--primary" href="#">View Meetings &amp; Events</a>
+          <a class="rs-btn rs-btn--ghost" href="#">Visit a Meeting</a>
+        </div>
+      </div>
+
+      <div class="rs-eventsPreview__visual">
+        <div class="rs-imgPh rs-imgPh--events">
+          <div class="rs-imgPh__label">
+            <strong>IMAGE PLACEHOLDER</strong><br>
+            Size: <strong>560px × 440px</strong><br>
+            Visual: Photo or illustration of a morning meeting / conference room.
+            Style: clean, bright, professional.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       8) FINAL CTA STRIP
+  ========================= -->
+  <section class="rs-finalCta" aria-label="Call to action">
+    <div class="rs-container rs-finalCta__inner">
+      <div class="rs-finalCta__copy">
+        <h2>Want to meet the chapter?</h2>
+        <p>Explore the member directory or attend a meeting as a guest.</p>
+      </div>
+
+      <div class="rs-finalCta__actions">
+        <a class="rs-btn rs-btn--primary" href="#">Visit a Meeting</a>
+        <a class="rs-btn rs-btn--ghost" href="#">Browse Members</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<style>
+  /* =========================================================
+     HOME PAGE STYLES ONLY (SCOPED)
+     This will not affect header/footer.
+  ========================================================= */
+
+  .rs-home{
+    --rs-red:#CF2030;
+    --rs-ink:#111827;
+    --rs-muted:#6B7280;
+    --rs-line:#E5E7EB;
+    --rs-soft:#F6F7FB;
+    --rs-soft2:#FBFBFD;
+    --rs-shadow: 0 12px 28px rgba(0,0,0,.08);
+    --rs-radius: 16px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--rs-ink);
+    background: #ffffff;
+  }
+
+  .rs-container{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 22px;
+  }
+
+  /* Helpers */
+  .rs-sectionHead{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:18px;
+  }
+  .rs-sectionHead h2{
+    margin:0;
+    font-size:26px;
+    letter-spacing:-.02em;
+  }
+  .rs-sectionHead p{
+    margin:6px 0 0;
+    color:var(--rs-muted);
+    line-height:1.6;
+    max-width:680px;
+  }
+  .rs-linkBtn{
+    font-weight:600;
+    color:var(--rs-red);
+    text-decoration:none;
+    white-space:nowrap;
+    padding:10px 12px;
+    border-radius:12px;
+    transition:.18s ease;
+  }
+  .rs-linkBtn:hover{
+    background: rgba(207,32,48,.08);
+    transform: translateY(-1px);
+  }
+
+  /* Buttons */
+  .rs-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px 16px;
+    border-radius:14px;
+    border:1px solid var(--rs-line);
+    background:#fff;
+    font-weight:600;
+    font-size:14px;
+    color:var(--rs-ink);
+    text-decoration:none;
+    white-space:nowrap;
+    position:relative;
+    overflow:hidden;
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  }
+  .rs-btn:hover{
+    transform: translateY(-1px);
+    box-shadow: var(--rs-shadow);
+  }
+  .rs-btn--primary{
+    background:var(--rs-red);
+    color:#fff;
+    border-color:transparent;
+  }
+  .rs-btn--primary:hover{filter:brightness(.98)}
+  .rs-btn--primary::after{
+    content:"";
+    position:absolute;
+    top:-30%;
+    left:-60%;
+    width:40%;
+    height:160%;
+    transform: rotate(20deg);
+    background: rgba(255,255,255,.25);
+    opacity:0;
+  }
+  .rs-btn--primary:hover::after{
+    opacity:1;
+    animation: rsSheen .9s ease forwards;
+  }
+  @keyframes rsSheen{
+    0%{left:-60%}
+    100%{left:120%}
+  }
+  .rs-btn--ghost{
+    background:#fff;
+  }
+  .rs-btn--soft{
+    background:#111827;
+    color:#fff;
+    border-color:#111827;
+    padding:11px 14px;
+    border-radius:12px;
+  }
+  .rs-btn--soft:hover{filter:brightness(1.05)}
+  .rs-btn--tiny{
+    padding:9px 12px;
+    border-radius:12px;
+    font-size:13px;
+  }
+  .rs-btn--block{width:100%}
+
+  /* Hero */
+  .rs-hero{
+    padding:48px 0 30px;
+    background:
+      radial-gradient(900px 420px at 15% 0%, rgba(207,32,48,.10), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 420px at 85% 25%, rgba(17,24,39,.06), rgba(255,255,255,0) 55%);
+  }
+  .rs-hero__grid{
+    display:grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap:28px;
+    align-items:center;
+  }
+  .rs-badgeRow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .rs-badge{
+    font-size:12px;
+    font-weight:600;
+    padding:7px 10px;
+    border-radius:999px;
+    background: rgba(207,32,48,.08);
+    color: var(--rs-red);
+    border:1px solid rgba(207,32,48,.12);
+  }
+  .rs-hero__title{
+    font-size:44px;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-.03em;
+  }
+  .rs-hero__sub{
+    margin:14px 0 18px;
+    font-size:16px;
+    line-height:1.7;
+    color: var(--rs-muted);
+    max-width:560px;
+  }
+  .rs-hero__actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .rs-hero__note{
+    font-size:13px;
+    color: var(--rs-muted);
+  }
+
+  .rs-hero__visual{
+    position:relative;
+  }
+
+  /* Image placeholders */
+  .rs-imgPh{
+    width:100%;
+    border-radius:18px;
+    border:1px dashed rgba(17,24,39,.22);
+    background: linear-gradient(180deg, #fff, #FBFBFD);
+    box-shadow: 0 12px 26px rgba(0,0,0,.06);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    text-align:center;
+    color:#6B7280;
+    line-height:1.5;
+  }
+  .rs-imgPh__label{
+    font-size:13px;
+    max-width:520px;
+  }
+  .rs-imgPh--hero{height:520px;}
+  .rs-imgPh--how{height:440px;}
+  .rs-imgPh--events{height:440px;}
+
+  /* floating mini-cards */
+  .rs-floatCard{
+    position:absolute;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    padding:12px 14px;
+    border-radius:16px;
+    background:#fff;
+    border:1px solid rgba(17,24,39,.12);
+    box-shadow: 0 18px 30px rgba(0,0,0,.12);
+    max-width:260px;
+  }
+  .rs-floatCard__icon{
+    width:34px;height:34px;
+    border-radius:10px;
+    background: rgba(207,32,48,.12);
+    color: var(--rs-red);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;
+  }
+  .rs-floatCard__title{font-weight:700;font-size:13px;margin-bottom:2px}
+  .rs-floatCard__sub{font-size:12px;color:var(--rs-muted)}
+  .rs-floatCard--one{left:-14px; top:26px}
+  .rs-floatCard--two{right:-10px; bottom:32px}
+
+  /* Trust strip */
+  .rs-trustStrip{
+    padding:22px 0;
+    border-top:1px solid var(--rs-line);
+    border-bottom:1px solid var(--rs-line);
+    background:#fff;
+  }
+  .rs-trustStrip__grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:12px;
+  }
+  .rs-stat{
+    padding:14px 14px;
+    border-radius:16px;
+    background: var(--rs-soft2);
+    border:1px solid rgba(17,24,39,.06);
+    text-align:center;
+  }
+  .rs-stat__num{font-weight:800; font-size:18px}
+  .rs-stat__label{color:var(--rs-muted); font-size:13px; margin-top:4px}
+
+  /* Members preview */
+  .rs-membersPreview{
+    padding:42px 0 44px;
+  }
+  .rs-searchBar{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    border:1px solid rgba(17,24,39,.10);
+    border-radius:16px;
+    padding:10px 12px;
+    background:#fff;
+    box-shadow: 0 12px 26px rgba(0,0,0,.05);
+    margin-bottom:18px;
+  }
+  .rs-searchIcon{
+    opacity:.75;
+    font-size:16px;
+    color:#374151;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:22px;
+  }
+  .rs-searchBar input{
+    border:none;
+    outline:none;
+    font-size:14px;
+    flex:1;
+    padding:10px 6px;
+    min-width:160px;
+  }
+  .rs-memberGrid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:14px;
+  }
+  .rs-memberCard{
+    display:flex;
+    gap:12px;
+    padding:14px;
+    border-radius:18px;
+    border:1px solid rgba(17,24,39,.10);
+    background:#fff;
+    box-shadow: 0 10px 18px rgba(0,0,0,.05);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .rs-memberCard:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--rs-shadow);
+  }
+  .rs-avatarPh{
+    width:84px;
+    height:84px;
+    border-radius:16px;
+    border:1px dashed rgba(17,24,39,.18);
+    background: linear-gradient(180deg, #fff, #FAFAFC);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    color:#6B7280;
+    flex:0 0 auto;
+    padding:8px;
+  }
+  .rs-avatarPh__label{font-size:11px; line-height:1.3}
+  .rs-memberCard__name{font-weight:800; font-size:14px}
+  .rs-memberCard__biz{font-size:13px; color:var(--rs-muted); margin-top:2px}
+  .rs-tags{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 10px}
+  .rs-tag{
+    font-size:12px;
+    font-weight:700;
+    padding:6px 9px;
+    border-radius:999px;
+    background: rgba(207,32,48,.08);
+    color: var(--rs-red);
+    border:1px solid rgba(207,32,48,.12);
+  }
+  .rs-tag--muted{
+    background: rgba(17,24,39,.06);
+    color: #374151;
+    border-color: rgba(17,24,39,.08);
+    font-weight:600;
+  }
+
+  /* How it works */
+  .rs-howItWorks{
+    padding:44px 0;
+    background: var(--rs-soft2);
+    border-top:1px solid rgba(17,24,39,.06);
+    border-bottom:1px solid rgba(17,24,39,.06);
+  }
+  .rs-howItWorks__grid{
+    display:grid;
+    grid-template-columns: .95fr 1.05fr;
+    gap:22px;
+    align-items:center;
+  }
+  .rs-howItWorks__copy h2{margin:0; font-size:28px; letter-spacing:-.02em}
+  .rs-howItWorks__copy p{margin:10px 0 14px; color:var(--rs-muted); line-height:1.7}
+
+  .rs-steps{display:flex; flex-direction:column; gap:10px; margin:14px 0 16px}
+  .rs-step{
+    display:flex;
+    gap:12px;
+    padding:12px 12px;
+    border-radius:16px;
+    background:#fff;
+    border:1px solid rgba(17,24,39,.08);
+  }
+  .rs-step__num{
+    width:34px;height:34px;
+    border-radius:12px;
+    background: rgba(207,32,48,.12);
+    color: var(--rs-red);
+    font-weight:900;
+    display:flex;align-items:center;justify-content:center;
+    flex:0 0 auto;
+  }
+  .rs-step__title{font-weight:900; font-size:14px}
+  .rs-step__text{color:var(--rs-muted); font-size:13px; margin-top:2px; line-height:1.5}
+
+  /* Spotlights */
+  .rs-spotlights{
+    padding:44px 0;
+  }
+  .rs-spotGrid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:14px;
+  }
+  .rs-spotCard{
+    border-radius:18px;
+    border:1px solid rgba(17,24,39,.10);
+    background:#fff;
+    padding:16px;
+    box-shadow: 0 10px 18px rgba(0,0,0,.05);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .rs-spotCard:hover{transform: translateY(-2px); box-shadow: var(--rs-shadow)}
+  .rs-spotCard__top{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px}
+  .rs-spotCard__badge{
+    font-size:12px;
+    font-weight:800;
+    padding:7px 10px;
+    border-radius:999px;
+    background: rgba(207,32,48,.10);
+    color: var(--rs-red);
+    border:1px solid rgba(207,32,48,.14);
+  }
+  .rs-spotCard__title{font-size:15px; font-weight:800; margin-bottom:8px}
+  .rs-spotCard__text{color:var(--rs-muted); line-height:1.6; font-size:13px}
+  .rs-spotCard__meta{margin-top:10px; font-size:12px; color:#374151; opacity:.85}
+
+  .rs-winList{margin:0; padding-left:16px}
+  .rs-winList li{margin:8px 0}
+
+  /* Gallery */
+  .rs-galleryPreview{
+    padding:44px 0;
+    background: var(--rs-soft2);
+    border-top:1px solid rgba(17,24,39,.06);
+    border-bottom:1px solid rgba(17,24,39,.06);
+  }
+  .rs-galleryGrid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:12px;
+  }
+  .rs-galleryTile{
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(17,24,39,.10);
+    background:#fff;
+    box-shadow: 0 10px 18px rgba(0,0,0,.05);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .rs-galleryTile:hover{transform: translateY(-2px); box-shadow: var(--rs-shadow)}
+  .rs-galleryPh{
+    height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:14px;
+    color:#6B7280;
+    font-size:12px;
+    border:1px dashed rgba(17,24,39,.16);
+    margin:10px;
+    border-radius:14px;
+    background: linear-gradient(180deg, #fff, #FAFAFC);
+  }
+
+  /* Events preview */
+  .rs-eventsPreview{
+    padding:44px 0;
+  }
+  .rs-eventsPreview__grid{
+    display:grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap:22px;
+    align-items:center;
+  }
+  .rs-eventsPreview__card{
+    background:#fff;
+    border:1px solid rgba(17,24,39,.10);
+    border-radius:20px;
+    padding:18px 18px;
+    box-shadow: 0 12px 22px rgba(0,0,0,.06);
+  }
+  .rs-eventsPreview__card h2{margin:0; font-size:28px; letter-spacing:-.02em}
+  .rs-eventsPreview__card p{margin:10px 0 14px; color:var(--rs-muted); line-height:1.7}
+  .rs-eventMeta{
+    border-radius:16px;
+    background: var(--rs-soft2);
+    border:1px solid rgba(17,24,39,.06);
+    padding:12px;
+    margin-bottom:14px;
+  }
+  .rs-eventRow{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:10px 8px;
+    border-bottom:1px solid rgba(17,24,39,.06);
+  }
+  .rs-eventRow:last-child{border-bottom:none}
+  .rs-eventLabel{font-weight:800; font-size:13px; color:#111827}
+  .rs-eventValue{font-size:13px; color:#374151}
+  .rs-eventsPreview__actions{display:flex; gap:12px; flex-wrap:wrap}
+
+  /* Final CTA */
+  .rs-finalCta{
+    padding:44px 0 58px;
+    background:
+      radial-gradient(900px 420px at 10% 0%, rgba(207,32,48,.12), rgba(255,255,255,0) 55%),
+      radial-gradient(900px 420px at 90% 40%, rgba(17,24,39,.08), rgba(255,255,255,0) 55%);
+    border-top:1px solid rgba(17,24,39,.06);
+  }
+  .rs-finalCta__inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:14px;
+    padding:18px;
+    border-radius:24px;
+    background:#fff;
+    border:1px solid rgba(17,24,39,.10);
+    box-shadow: 0 16px 28px rgba(0,0,0,.08);
+  }
+  .rs-finalCta__copy h2{margin:0; font-size:24px}
+  .rs-finalCta__copy p{margin:6px 0 0; color:var(--rs-muted)}
+  .rs-finalCta__actions{display:flex; gap:12px; flex-wrap:wrap}
+
+  /* Responsive */
+  @media (max-width: 980px){
+    .rs-hero__grid{grid-template-columns: 1fr; gap:18px}
+    .rs-imgPh--hero{height:420px}
+    .rs-floatCard{display:none}
+
+    .rs-trustStrip__grid{
+      grid-template-columns: repeat(2, 1fr);
+      gap:10px;
+    }
+
+    .rs-memberGrid{grid-template-columns: repeat(2, 1fr)}
+    .rs-howItWorks__grid{grid-template-columns: 1fr; gap:16px}
+    .rs-spotGrid{grid-template-columns: 1fr}
+    .rs-galleryGrid{grid-template-columns: repeat(2, 1fr)}
+    .rs-eventsPreview__grid{grid-template-columns: 1fr; gap:16px}
+    .rs-finalCta__inner{flex-direction:column; align-items:flex-start}
+  }
+
+  @media (max-width: 520px){
+    .rs-container{padding:0 16px}
+
+    /* Improved mobile vertical rhythm */
+    .rs-hero{padding:34px 0 22px}
+    .rs-membersPreview,
+    .rs-spotlights,
+    .rs-eventsPreview{padding:34px 0}
+    .rs-howItWorks,
+    .rs-galleryPreview{padding:34px 0}
+    .rs-finalCta{padding:34px 0 46px}
+
+    .rs-sectionHead{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:10px;
+    }
+    .rs-sectionHead h2{font-size:21px; line-height:1.18}
+    .rs-sectionHead p{font-size:14px}
+
+    .rs-hero__title{
+      font-size:32px;
+      line-height:1.1;
+      letter-spacing:-.02em;
+    }
+    .rs-hero__sub{font-size:15px}
+    .rs-badgeRow{gap:6px}
+    .rs-badge{padding:6px 9px}
+
+    /* Mobile buttons full width + nicer spacing */
+    .rs-hero__actions{
+      flex-direction:column;
+      align-items:stretch;
+      gap:10px;
+    }
+    .rs-hero__actions .rs-btn{
+      width:100%;
+      justify-content:center;
+    }
+
+    /* Hero visual tighter and more natural */
+    .rs-imgPh--hero{height:360px}
+    .rs-imgPh--how{height:360px}
+    .rs-imgPh--events{height:360px}
+
+    /* Stats (2x2) with better spacing on phones */
+    .rs-trustStrip{padding:18px 0}
+    .rs-stat{padding:12px}
+    .rs-stat__num{font-size:17px}
+    .rs-stat__label{font-size:12px}
+
+    /* Search bar becomes stacked, but looks intentional */
+    .rs-searchBar{
+      flex-wrap:wrap;
+      gap:10px;
+      padding:12px 12px;
+    }
+    .rs-searchIcon{
+      width:22px;
+      margin-left:2px;
+    }
+    .rs-searchBar input{
+      flex:1 1 100%;
+      padding:12px 6px;
+      font-size:15px;
+    }
+    .rs-searchBar .rs-btn--soft{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+    }
+
+    /* Member cards: make them feel less cramped on mobile */
+    .rs-memberGrid{grid-template-columns: 1fr}
+    .rs-memberCard{
+      padding:14px;
+      border-radius:20px;
+    }
+    .rs-avatarPh{
+      width:78px;
+      height:78px;
+      border-radius:18px;
+    }
+
+    /* Steps section: ensure perfect spacing */
+    .rs-step{
+      padding:12px;
+      border-radius:18px;
+    }
+    .rs-step__num{
+      width:32px;
+      height:32px;
+      border-radius:12px;
+    }
+
+    /* Gallery: one column with consistent tile spacing */
+    .rs-galleryGrid{grid-template-columns: 1fr}
+    .rs-galleryPh{
+      height:200px;
+      margin:12px;
+    }
+
+    /* Events meta rows stack better on narrow phones */
+    .rs-eventRow{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:6px;
+      padding:10px 8px;
+    }
+    .rs-eventLabel{font-size:13px}
+    .rs-eventValue{font-size:13px}
+
+    /* Final CTA: buttons full width */
+    .rs-finalCta__inner{
+      padding:16px;
+      border-radius:22px;
+    }
+    .rs-finalCta__actions{
+      width:100%;
+      flex-direction:column;
+      align-items:stretch;
+    }
+    .rs-finalCta__actions .rs-btn{
+      width:100%;
+      justify-content:center;
+    }
+  }
+</style>
+
+
+
+
+
+
+<footer class="rs-footer" role="contentinfo">
+  <div class="rs-footer__inner">
+
+    <div class="rs-footer__grid">
+
+      <!-- Brand -->
+      <div class="rs-footer__brand">
+        <img
+          class="rs-footer__logo"
+          src="https://d34hmiuaex7c0.cloudfront.net/6568/uploads/cmaspages/gallery/galleryitem_1759854726598.png"
+          alt="BNI Rock Solid Referrals"
+        />
+        <p class="rs-footer__desc">
+          BNI Rock Solid Referrals is a structured network of trusted local professionals —
+          built on consistency, credibility, and referrals that convert.
+        </p>
+      </div>
+
+      <!-- Explore -->
+      <div class="rs-footer__col">
+        <h4>Explore</h4>
+        <a href="#">Home</a>
+        <a href="#">Chapter Members</a>
+        <a href="#">Meetings &amp; Events</a>
+        <a href="#">Gallery</a>
+      </div>
+
+      <!-- Members -->
+      <div class="rs-footer__col">
+        <h4>Members</h4>
+        <a href="#">Member Log-in</a>
+        <a href="#">Member Directory</a>
+        <a href="#">Request a 1-to-1</a>
+        <a href="#">Share a Referral</a>
+        <a href="#">Submit Seek of the Week</a>
+        <a href="#">View Seeks of the Week</a>
+      </div>
+
+    </div>
+
+    <div class="rs-footer__bottom">
+      <div class="rs-footer__bottomLeft">
+        © <span id="rsFooterYear"></span> BNI Rock Solid Referrals&nbsp;&nbsp;•&nbsp;&nbsp;Powered by Segwik
+      </div>
+
+      <div class="rs-footer__bottomRight">
+        <a href="#">Privacy Policy</a>
+        <span class="rs-footer__sep">|</span>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  /* -------- FOOTER ONLY VARIABLES (scoped) -------- */
+  .rs-footer{
+    --rs-red:#CF2030;
+    --rs-bg:#333333;
+    --rs-text:#ffffff;
+    --rs-muted: rgba(255,255,255,.82);
+    --rs-line: rgba(255,255,255,.14);
+  }
+
+  /* Scope all typography + box sizing to footer only */
+  .rs-footer, .rs-footer *{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing:border-box;
+  }
+
+  .rs-footer{
+    width:100%;
+    background: var(--rs-bg);
+    color: var(--rs-text);
+    border-top: 4px solid var(--rs-red);
+  }
+
+  .rs-footer__inner{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:42px 22px 18px;
+  }
+
+  .rs-footer__grid{
+    display:grid;
+    grid-template-columns: 2.2fr 1fr 1fr;
+    gap:28px;
+    align-items:start;
+  }
+
+  /* Prevent logo stretch */
+  .rs-footer__logo{
+    height:34px;
+    width:auto;
+    max-width:220px;
+    object-fit:contain;
+    display:block;
+  }
+
+  .rs-footer__desc{
+    margin:12px 0 0;
+    font-weight:400;
+    font-size:14px;
+    line-height:1.6;
+    max-width:560px;
+    color: var(--rs-muted);
+  }
+
+  .rs-footer__col h4{
+    margin:0 0 12px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#fff;
+    position:relative;
+  }
+  .rs-footer__col h4::after{
+    content:"";
+    display:block;
+    width:42px;
+    height:2px;
+    border-radius:999px;
+    background: var(--rs-red);
+    margin-top:10px;
+    opacity:.95;
+  }
+
+  .rs-footer__col a{
+    display:block;
+    width:max-content;
+    margin:10px 0;
+    font-weight:400;
+    font-size:14px;
+    color: var(--rs-muted);
+    text-decoration:none;
+    transition:.15s ease;
+  }
+  .rs-footer__col a:hover{
+    color:#fff;
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+
+  .rs-footer__bottom{
+    margin-top:22px;
+    padding-top:14px;
+    border-top:1px solid var(--rs-line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    font-size:13px;
+    color: var(--rs-muted);
+  }
+
+  .rs-footer__bottomLeft{font-weight:400}
+
+  .rs-footer__bottomRight{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:400;
+  }
+  .rs-footer__bottomRight a{
+    color: var(--rs-muted);
+    text-decoration:none;
+    transition:.15s ease;
+  }
+  .rs-footer__bottomRight a:hover{
+    color:#fff;
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+  .rs-footer__sep{opacity:.5}
+
+  /* Mobile polish */
+  @media (max-width: 860px){
+    .rs-footer__grid{
+      grid-template-columns: 1fr 1fr;
+    }
+    .rs-footer__brand{
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 520px){
+    .rs-footer__inner{
+      padding:34px 16px 14px;
+    }
+
+    .rs-footer__grid{
+      grid-template-columns: 1fr;
+      gap:18px;
+    }
+
+    /* Make columns feel like sections on mobile */
+    .rs-footer__col{
+      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+
+    .rs-footer__col a{
+      width:100%;
+      padding:10px 0;
+      margin:0;
+    }
+
+    .rs-footer__bottom{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:8px;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("rsFooterYear").textContent = new Date().getFullYear();
+</script>
