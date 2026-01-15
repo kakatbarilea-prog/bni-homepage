@@ -1,3 +1,361 @@
+<header class="rs-header" role="banner">
+  <div class="rs-header__inner">
+
+    <!-- Brand / Logo -->
+    <a class="rs-brand" href="#" aria-label="BNI Rock Solid Referrals - Home">
+      <img
+        class="rs-brand__logo"
+        src="https://d34hmiuaex7c0.cloudfront.net/6568/uploads/cmaspages/gallery/galleryitem_1759854726598.png"
+        alt="BNI Rock Solid Referrals"
+      />
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="rs-nav" aria-label="Primary navigation">
+      <a class="rs-nav__link is-active" href="#">Home</a>
+
+      <!-- Dropdown (CSS-only) -->
+      <div class="rs-nav__dropdown">
+        <a class="rs-nav__link rs-nav__dropbtn" href="#" aria-haspopup="true" aria-expanded="false">
+          Chapter Members
+        </a>
+
+        <div class="rs-nav__menu" role="menu" aria-label="Chapter Members">
+          <a role="menuitem" href="#">Directory</a>
+          <a role="menuitem" href="#">Seeks of the Week</a>
+        </div>
+      </div>
+
+      <a class="rs-nav__link" href="#">Meetings &amp; Events</a>
+      <a class="rs-nav__link" href="#">Gallery</a>
+    </nav>
+
+    <!-- Right -->
+    <div class="rs-actions">
+      <a class="rs-btn rs-btn--primary rs-desktopOnly" href="#">Member Log-in</a>
+
+      <!-- Mobile menu button (JS toggles panel) -->
+      <button class="rs-iconbtn" id="rsMenuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 6h16a1 1 0 1 0 0-2H4a1 1 0 1 0 0 2Zm16 7H4a1 1 0 0 0 0 2h16a1 1 0 1 0 0-2Zm0 7H4a1 1 0 0 0 0 2h16a1 1 0 1 0 0-2Z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Panel -->
+  <div class="rs-mobile" id="rsMobilePanel" hidden>
+    <div class="rs-mobile__inner">
+      <a href="#" class="rs-mobile__link">Home</a>
+      <a href="#" class="rs-mobile__link">Chapter Members — Directory</a>
+      <a href="#" class="rs-mobile__link">Chapter Members — Seeks of the Week</a>
+      <a href="#" class="rs-mobile__link">Meetings &amp; Events</a>
+      <a href="#" class="rs-mobile__link">Gallery</a>
+
+      <div class="rs-mobile__cta">
+        <a class="rs-btn rs-btn--primary rs-btn--block" href="#">Member Log-in</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* -------- HEADER ONLY VARIABLES (scoped) -------- */
+  .rs-header{
+    --rs-red:#CF2030;
+    --rs-ink:#111827;
+    --rs-line:#E5E7EB;
+    --rs-bg: rgba(255,255,255,.92);
+    --rs-shadow: 0 10px 26px rgba(0,0,0,.10);
+    --rs-h: 78px;
+  }
+
+  /* Scope all typography + box sizing to header only */
+  .rs-header, .rs-header *{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing:border-box;
+  }
+
+  .rs-header{
+    position:sticky; top:0; z-index:999;
+    width:100%;
+    background: var(--rs-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(229,231,235,.95);
+  }
+
+  .rs-header__inner{
+    width:100%;
+    height:var(--rs-h);
+    padding:0 26px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+  }
+
+  .rs-brand{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    flex:0 0 auto;
+  }
+
+  /* Prevent stretch */
+  .rs-brand__logo{
+    height:40px;
+    width:auto;
+    max-width:220px;
+    object-fit:contain;
+    display:block;
+  }
+
+  .rs-nav{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    flex:1;
+    min-width:0;
+  }
+
+  .rs-nav__link{
+    display:inline-flex;
+    align-items:center;
+    padding:10px 12px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:14px;
+    color:var(--rs-ink);
+    text-decoration:none;
+    white-space:nowrap;
+    transition:.15s ease;
+  }
+  .rs-nav__link:hover{background:#F6F7FB}
+
+  .rs-nav__link.is-active{position:relative}
+  .rs-nav__link.is-active::after{
+    content:"";
+    position:absolute;
+    left:12px; right:12px; bottom:6px;
+    height:2px;
+    border-radius:999px;
+    background:var(--rs-red);
+  }
+
+  /* Dropdown (CSS-only) with hover bridge */
+  .rs-nav__dropdown{position:relative}
+  .rs-nav__dropbtn{cursor:default}
+
+  .rs-nav__menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    margin-top:8px;
+    min-width:210px;
+    background:#fff;
+    border:1px solid var(--rs-line);
+    border-radius:14px;
+    box-shadow:var(--rs-shadow);
+    padding:8px;
+    display:none;
+    z-index:50;
+  }
+
+  .rs-nav__dropdown::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:100%;
+    width:240px;
+    height:18px;
+    background:transparent;
+    display:none;
+    z-index:40;
+  }
+
+  .rs-nav__menu a{
+    display:block;
+    padding:11px 12px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:14px;
+    color:var(--rs-ink);
+    text-decoration:none;
+    transition:.15s ease;
+  }
+  .rs-nav__menu a:hover{background:#F6F7FB}
+
+  .rs-nav__dropdown:hover .rs-nav__menu,
+  .rs-nav__dropdown:focus-within .rs-nav__menu{
+    display:block;
+  }
+  .rs-nav__dropdown:hover::before,
+  .rs-nav__dropdown:focus-within::before{
+    display:block;
+  }
+
+  .rs-actions{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:10px;
+    flex:0 0 auto;
+  }
+
+  /* Button with hover animation */
+  .rs-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:11px 16px;
+    border-radius:12px;
+    border:1px solid var(--rs-line);
+    background:#fff;
+    font-weight:600;
+    font-size:14px;
+    color:var(--rs-ink);
+    text-decoration:none;
+    white-space:nowrap;
+    position:relative;
+    overflow:hidden;
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  }
+
+  .rs-btn--primary{
+    border-color:transparent;
+    background:var(--rs-red);
+    color:#fff;
+  }
+
+  /* subtle sheen animation */
+  .rs-btn--primary::after{
+    content:"";
+    position:absolute;
+    top:-30%;
+    left:-60%;
+    width:40%;
+    height:160%;
+    transform: rotate(20deg);
+    background: rgba(255,255,255,.25);
+    opacity:0;
+    transition: opacity .2s ease;
+  }
+
+  .rs-btn--primary:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(0,0,0,.14);
+    filter: brightness(.98);
+  }
+  .rs-btn--primary:hover::after{
+    opacity:1;
+    animation: rsSheen .9s ease forwards;
+  }
+
+  @keyframes rsSheen{
+    0%{left:-60%}
+    100%{left:120%}
+  }
+
+  .rs-desktopOnly{display:inline-flex}
+
+  /* Mobile hamburger */
+  .rs-iconbtn{
+    width:44px;height:44px;
+    border-radius:12px;
+    border:1px solid var(--rs-line);
+    background:#fff;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .rs-iconbtn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(0,0,0,.10);
+  }
+  .rs-iconbtn svg{width:20px;height:20px; fill:#111827; display:block}
+
+  /* Mobile panel */
+  .rs-mobile{
+    border-top:1px solid var(--rs-line);
+    background:#fff;
+  }
+  .rs-mobile__inner{
+    padding:14px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .rs-mobile__link{
+    padding:12px 12px;
+    border-radius:12px;
+    font-weight:600;
+    background:#F7F7FA;
+    border:1px solid #EEF0F6;
+    text-decoration:none;
+    color:var(--rs-ink);
+    transition:.15s ease;
+  }
+  .rs-mobile__link:hover{background:#F1F3F8}
+  .rs-mobile__cta{padding-top:6px}
+  .rs-btn--block{width:100%}
+
+  @media (max-width: 980px){
+    .rs-nav{display:none}
+    .rs-iconbtn{display:inline-flex}
+    .rs-desktopOnly{display:none}
+    .rs-header__inner{padding:0 16px}
+    .rs-brand__logo{height:36px; max-width:180px;}
+  }
+
+  @media (max-width: 420px){
+    .rs-header{--rs-h:72px}
+    .rs-brand__logo{max-width:150px;}
+  }
+</style>
+
+<script>
+  /* Minimal / necessary only: mobile hamburger open/close */
+  (function(){
+    const btn = document.getElementById('rsMenuBtn');
+    const panel = document.getElementById('rsMobilePanel');
+    if(!btn || !panel) return;
+
+    function close(){
+      panel.setAttribute('hidden','');
+      btn.setAttribute('aria-expanded','false');
+    }
+
+    btn.addEventListener('click', () => {
+      const isHidden = panel.hasAttribute('hidden');
+      if(isHidden){
+        panel.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded','true');
+      }else{
+        close();
+      }
+    });
+
+    // Optional nice behavior: close after tapping a link
+    panel.addEventListener('click', (e) => {
+      if(e.target && e.target.tagName === 'A') close();
+    });
+
+    // Close if resizing back to desktop
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 980) close();
+    });
+  })();
+</script>
+
+
+
+
+<!--start-->
+
 <!-- =========================================================
 BNI ROCK SOLID — HOMEPAGE SECTIONS (NO HEADER/FOOTER INCLUDED)
 - Mobile-first, clean, professional
@@ -1085,3 +1443,230 @@ BNI ROCK SOLID — HOMEPAGE SECTIONS (NO HEADER/FOOTER INCLUDED)
     }
   }
 </style>
+
+<!--end-->
+
+
+
+<footer class="rs-footer" role="contentinfo">
+  <div class="rs-footer__inner">
+
+    <div class="rs-footer__grid">
+
+      <!-- Brand -->
+      <div class="rs-footer__brand">
+        <img
+          class="rs-footer__logo"
+          src="https://d34hmiuaex7c0.cloudfront.net/6568/uploads/cmaspages/gallery/galleryitem_1759854726598.png"
+          alt="BNI Rock Solid Referrals"
+        />
+        <p class="rs-footer__desc">
+          BNI Rock Solid Referrals is a structured network of trusted local professionals —
+          built on consistency, credibility, and referrals that convert.
+        </p>
+      </div>
+
+      <!-- Explore -->
+      <div class="rs-footer__col">
+        <h4>Explore</h4>
+        <a href="#">Home</a>
+        <a href="#">Chapter Members</a>
+        <a href="#">Meetings &amp; Events</a>
+        <a href="#">Gallery</a>
+      </div>
+
+      <!-- Members -->
+      <div class="rs-footer__col">
+        <h4>Members</h4>
+        <a href="#">Member Log-in</a>
+        <a href="https://kakatbarilea-prog.github.io/bni-chamber-members-directory">Member Directory</a>
+        <a href="#">Request a 1-to-1</a>
+        <a href="#">Share a Referral</a>
+        <a href="#">Submit Seek of the Week</a>
+        <a href="#">View Seeks of the Week</a>
+      </div>
+
+    </div>
+
+    <div class="rs-footer__bottom">
+      <div class="rs-footer__bottomLeft">
+        © <span id="rsFooterYear"></span> BNI Rock Solid Referrals&nbsp;&nbsp;•&nbsp;&nbsp;Powered by Segwik
+      </div>
+
+      <div class="rs-footer__bottomRight">
+        <a href="#">Privacy Policy</a>
+        <span class="rs-footer__sep">|</span>
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  /* -------- FOOTER ONLY VARIABLES (scoped) -------- */
+  .rs-footer{
+    --rs-red:#CF2030;
+    --rs-bg:#333333;
+    --rs-text:#ffffff;
+    --rs-muted: rgba(255,255,255,.82);
+    --rs-line: rgba(255,255,255,.14);
+  }
+
+  /* Scope all typography + box sizing to footer only */
+  .rs-footer, .rs-footer *{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing:border-box;
+  }
+
+  .rs-footer{
+    width:100%;
+    background: var(--rs-bg);
+    color: var(--rs-text);
+    border-top: 4px solid var(--rs-red);
+  }
+
+  .rs-footer__inner{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:42px 22px 18px;
+  }
+
+  .rs-footer__grid{
+    display:grid;
+    grid-template-columns: 2.2fr 1fr 1fr;
+    gap:28px;
+    align-items:start;
+  }
+
+  /* Prevent logo stretch */
+  .rs-footer__logo{
+    height:34px;
+    width:auto;
+    max-width:220px;
+    object-fit:contain;
+    display:block;
+  }
+
+  .rs-footer__desc{
+    margin:12px 0 0;
+    font-weight:400;
+    font-size:14px;
+    line-height:1.6;
+    max-width:560px;
+    color: var(--rs-muted);
+  }
+
+  .rs-footer__col h4{
+    margin:0 0 12px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#fff;
+    position:relative;
+  }
+  .rs-footer__col h4::after{
+    content:"";
+    display:block;
+    width:42px;
+    height:2px;
+    border-radius:999px;
+    background: var(--rs-red);
+    margin-top:10px;
+    opacity:.95;
+  }
+
+  .rs-footer__col a{
+    display:block;
+    width:max-content;
+    margin:10px 0;
+    font-weight:400;
+    font-size:14px;
+    color: var(--rs-muted);
+    text-decoration:none;
+    transition:.15s ease;
+  }
+  .rs-footer__col a:hover{
+    color:#fff;
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+
+  .rs-footer__bottom{
+    margin-top:22px;
+    padding-top:14px;
+    border-top:1px solid var(--rs-line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    font-size:13px;
+    color: var(--rs-muted);
+  }
+
+  .rs-footer__bottomLeft{font-weight:400}
+
+  .rs-footer__bottomRight{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:400;
+  }
+  .rs-footer__bottomRight a{
+    color: var(--rs-muted);
+    text-decoration:none;
+    transition:.15s ease;
+  }
+  .rs-footer__bottomRight a:hover{
+    color:#fff;
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+  .rs-footer__sep{opacity:.5}
+
+  /* Mobile polish */
+  @media (max-width: 860px){
+    .rs-footer__grid{
+      grid-template-columns: 1fr 1fr;
+    }
+    .rs-footer__brand{
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 520px){
+    .rs-footer__inner{
+      padding:34px 16px 14px;
+    }
+
+    .rs-footer__grid{
+      grid-template-columns: 1fr;
+      gap:18px;
+    }
+
+    /* Make columns feel like sections on mobile */
+    .rs-footer__col{
+      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+
+    .rs-footer__col a{
+      width:100%;
+      padding:10px 0;
+      margin:0;
+    }
+
+    .rs-footer__bottom{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:8px;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById("rsFooterYear").textContent = new Date().getFullYear();
+</script>
